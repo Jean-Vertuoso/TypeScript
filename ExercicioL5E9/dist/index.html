@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 009 - Conversor de temperatura</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="js/index.js" defer></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="box">
+
+                <div class="AjusteDaBox">
+
+                    <div id="Titulo">
+    
+                        <h1>Conversor de temperatura</h1>
+    
+                    </div>
+                    
+                    <div class="Radios">
+
+                        <div class="Temps">
+
+                            <label for="idCelsius">Celsius</label>
+                            <input
+                                id="idCelsius"
+                                name="nmTemp"
+                                type="radio">
+
+                        </div>
+
+                        <div class="Temps">
+
+                            <label for="idFahrenheit">Fahrenheit</label>
+                            <input
+                                id="idFahrenheit"
+                                name="nmTemp"
+                                type="radio">
+
+                        </div>
+
+                        <div class="Temps">
+
+                            <label for="idKelvin">Kelvin</label>
+                            <input
+                                id="idKelvin"
+                                name="nmTemp"
+                                type="radio">
+                                
+                        </div>
+
+                    </div>
+
+                    <div class="CaixaDigitacao">
+
+                        <label for="idTemp">Digite a temperatura</label>
+                        <input
+                            id="idTemp"
+                            type="number"
+                            step="0.1"
+                            min="0"
+                            name="nmNumero">
+                        
+                    </div>
+
+                    <div class="CaixaResultado">
+
+                        <textarea
+                            id="idSaida"
+                            type="text"
+                            cols="40"
+                            rows="8"
+                            name="nmSaida"
+                            readonly>
+                        </textarea>
+
+                    </div>
+
+                    <div class="CaixaBotao">
+
+                        <input
+                            class="botoes"
+                            type="button"
+                            value="Calcular">
+
+
+                    </div>
+
+                </div>
+
+        </div>
+    </body>
+</html>
