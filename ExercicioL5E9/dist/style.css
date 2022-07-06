@@ -27,12 +27,12 @@
 
 }
 
-#AjusteDaBox{
+.AjusteDaBox{
 
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width:400px;
+    width:500px;
     height:100%;
     align-items: center;
     justify-content: space-around;
@@ -40,15 +40,28 @@
 }
 
 .CaixaDigitacao{
+
     display: flex;
     align-items: center;
     flex-direction: column;
+
 }
 
 .CaixaDigitacao label{
+
     font-weight: bold;
     margin-right: 5px;
     padding:5px;
+
+}
+
+.CaixaDigitacao input{
+
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: bold;
+
 }
 
 .Radios{
@@ -56,7 +69,7 @@
     display:flex;
     align-content: space-around;
     width: 80%;
-
+    justify-content: center;
 }
 
 .Temps{
@@ -67,4 +80,20 @@
     align-items: center;
     padding: 10px;
 
+}
+
+#idSaida{
+
+    font-weight: bold;
+    font-size: 15px;
+    resize: none;
+    
+}
+
+#idBtn{
+
+    width: 180px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
 }
