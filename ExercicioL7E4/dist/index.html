@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="js/index.js" defer></script>
+        <title>Exercício 004 - Média de temperaturas</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="box">
+
+                <div id="Titulo">
+                    <h1>Média de temperaturas</h1>
+                </div>
+
+                <div id="AjusteDaBox">
+
+                    <div class="CaixaDigitacaoTemp">
+                        <label for="idTemp" id="idLbTemp">Digite a temperatura do 1º dia</label>
+                        <input
+                            id="idTemp"
+                            type="number"
+                            name="nmNum"
+                            step="0.1"
+                            min="0"
+                            max="10"
+                            required>
+                    </div>
+
+                    <div class="CaixaDigitacaoDia">
+                        <label for="idTempLabel">Digite o dia para mostrar a média das temperaturas</label>
+                        <input
+                            id="idDia"                            
+                            type="number"
+                            name="nmDia"
+                            min="0"
+                            max="30"
+                            required>
+                    </div>
+
+                    <div class="Resultado">
+                        <textarea
+                            id="idResultado"
+                            name="nmResultado"
+                            cols="43"
+                            rows="2"
+                            readonly>
+                        </textarea>
+                    </div>
+
+                    <div class="CaixaDeBotoes">
+
+                        <div class="Botao">
+                            <input
+                                id="idBotaoGuardar"
+                                type="button"
+                                value="Guardar temp.">
+                        </div>
+
+                        <div class="Botao">
+                            <input
+                                id="idMostrarResultado"
+                                type="button"
+                                value="Mostrar temp.">
+                        </div>
+
+                    </div>
+
+                </div>
+        
+            </div>
+
+        </div>
+
+    </body>
+</html>
