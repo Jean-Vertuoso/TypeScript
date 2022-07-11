@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .container{
@@ -26,40 +27,64 @@
     align-items: center;
 }
 
-#AjusteDaBox{
+.AjusteDaBox{
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width:400px;
+    width:80%;
+    height: 100%;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 #Titulo{
     display: block;
-    padding: 20px;
+    padding: 5px;
+}
+
+#Subtitulo{
+    display: block;
+    padding: 5px;
 }
 
 .CaixaDigitacao{
     display: flex;
     align-items: center;
+    flex-direction: column;    
+    text-align: center;
+}
+
+.CaixaDigitacao input{
+    display: flex;
+}
+
+.CaixaRadios{
+    display: flex;
     flex-direction: column;
+    text-align: center;
+    padding: 5px;
 }
 
-.CaixaDigitacao label{
-    font-weight: bold;
-    margin-right: 5px;
-    padding:5px;
-}
-
-.Radios{
+.Radios input{
     display:flex;
-    align-content: space-around;
-}
-
-.Temps{
-    display:flex;
+    flex-direction: column;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
+}
+
+#idRetanOuTrianRet{
+    visibility: hidden;
+}
+
+#idResultado{
+    padding:5px;
+    font-weight: bold;
+    font-size: 16px;
+    resize: none;
+    width: 98%;
+}
+
+.CaixaBotao input{
     padding: 10px;
+    width: 150px;
+    font-size: 18px;
 }
