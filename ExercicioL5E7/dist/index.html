@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="js/index.js" defer></script>
+        <title>Exercício 007 - Jogo de adivinhação</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="box">
+
+                <div id="AjusteDaBox">
+
+                    <div id="Titulo">
+                        <h1>Jogo de adivinhação</h1>
+                    </div>
+
+                    <div class="CaixaDigitacao">
+                        <label for="idNumEscolhido">Número escolhido</label>
+                        <input
+                            id="idNumEscolhido"
+                            name="nmNumEscolhido"
+                            type="number">
+                    </div>
+
+                    <div class="CaixaResultado">
+                        <input
+                            id="idSaida"
+                            name="nmSaida"
+                            cols="35"
+                            rows="5"
+                            resize="none"
+                            readonly>
+                    </div>
+
+                    <div class="Botao">
+                        <input
+                            id="idBtn"
+                            type="button"
+                            value="Mostrar">
+                    </div>
+
+                </div>
+
+            </div>
+        
+        </div>
+
+    </body>
+</html>

@@ -7,22 +7,15 @@ export class Pessoa {
     anoNasc: number;
 
     constructor(nome: string, idade: number, diaNasc: number, mesNasc: number, anoNasc: number){
-
         this.nome = nome;
         this.idade = idade;
         this.diaNasc = diaNasc;
         this.mesNasc = mesNasc;
         this.anoNasc = anoNasc;
-
     }
 
-    public calculaIdade(data: any, dia: number, mes: number, ano: number): any {
-        data = new Date();
-        dia = data.getDay();
-        mes = data.getMonth();
-        ano = data.getYear();
-
-        return console.log(data)
+    public calculaIdade(dia: number, mes: number, ano: number): any {
+        this.idade = 
     }
 
     public getIdade(idade: number): number {

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 006 - Idades</title>
+        <style>
+            .formularioExterno{
+                width: 400px;
+                height: 450px;
+                border-radius: 20px;
+                justify-items: center;
+                margin-top: 250px;
+                background-color: aliceblue;
+            }
+            
+            h1{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .botoes{
+                border-radius: 100%;
+                width: 50px;
+                height:50px;
+                margin: 10px;
+                font-size: 30px;
+            }
+
+            .botoes{
+                border-radius: 5px;
+                width: 100px;
+                height: 50px;
+                margin: 10px;
+                font-size: 20px;
+            }
+        </style>
+        </style>
+    </head>
+    <body>
+        <center><form action="" method="get">
+            <center><fieldset class="formularioExterno">
+
+                <!-- Crie um algoritmo que leia a idade de 'n' pessoas, mostrando no final:
+                    a) Qual é a média de idade do grupo
+                    b) Quantas pessoas tem mais de 18 anos
+                    c) Quantas pessoas tem menos de 5 anos
+                    d) Qual foi a maior idade lida -->
+
+                
+                <br>
+
+                
+
+                <br><br>
+
+                
+
+                <input
+                    class="botoes"
+                    type="button"
+                    value="Mostrar"
+                    onclick="contarIdades()">
+
+            </fieldset></center>
+
+        </form></center>
+
+
+        <script>
+
+                var somaIdades = 0;
+                var contIdade = 0;
+                var cont = 0;
+                var mediaIdade = 0;
+                var maiorIdade = -1;
+                var pessoasAteCinco = 0;
+                var pessoasMaisDezoito = 0;
+
+            function contarIdades(){
+
+                let idadeDigitada =  Number(document.querySelector("#idIdade").value);
+                let saida = document.querySelector("#idSaida");
+
+                somaIdades = somaIdades + idadeDigitada;
+                contIdade++;
+                mediaIdade = (somaIdades/contIdade).toFixed(2)
+
+                    if (idadeDigitada < 5){
+                        pessoasAteCinco++;                        
+                    }
+                    if (idadeDigitada > 18){
+                        pessoasMaisDezoito++;
+                    }
+                    if (idadeDigitada > maiorIdade){
+                        maiorIdade = idadeDigitada;
+                    }
+                saida.value = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;                   
+                }
+        </script>
+    </body>
+</html>
