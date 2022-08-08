@@ -2,23 +2,26 @@
 //-------------------------------------------------------------------- Declaração de variáveis --------------------------------------------------------------------------------\\
 const temp = [];
 var labelTemp = document.getElementById("idLbTemp");
-var caixaDigitacao = document.getElementById("idTemp");
-var caixaDia = document.getElementById("idDia");
-var botaoAdicionar = document.getElementById("idBotaoGuardar");
-var botaoResultado = document.getElementById("idMostrarResultado");
+var tempInserida = document.getElementById("idTemp");
+var diaInserido = document.getElementById("idDia");
+const atualizarDisplay = document.getElementById("idResultado");
+const botaoAdicionar = document.getElementById("idBotaoGuardar");
+const botaoResultado = document.getElementById("idMostrarResultado");
 var cont = 30;
 var contDia = 2;
+var somaTemp = 0;
+var mediaTemp = 0;
 //-------------------------------------------------------------------- Inicialização do programa ------------------------------------------------------------------------------\\
 iniciar();
 function iniciar() {
-    caixaDia.disabled = true;
+    diaInserido.disabled = true;
     botaoResultado.disabled = true;
 }
 //-------------------------------------------------------------------- Função para alimentar array ----------------------------------------------------------------------------\\
 botaoAdicionar.onclick = function () {
     let isTelaValida = consistirTela();
     if ((cont != 0) && (isTelaValida)) {
-        temp.push(caixaDigitacao.valueAsNumber);
+        temp.push(tempInserida.valueAsNumber);
         console.log(temp);
         modificarLabel();
         limparCaixas();
@@ -29,32 +32,36 @@ botaoAdicionar.onclick = function () {
         bloquearCaixas();
     }
 };
-//---------------------------------------------------------------- Função para realizar análise e mostrar resultado -----------------------------------------------------------\\
-/*botaoResultado.onclick = function(){
-
-    somaTemp = temp.reduce(function (somaTemp, temp){// Função para somar todas os itens da array;
+//--------------------------------------------------------------------- Função para realizar soma e calcular média -----------------------------------------------------------\\
+function somaDasTemp(mediaTemp) {
+    somaTemp = temp.reduce(function (somaTemp, temp) {
         return somaTemp + temp;
     }, 0);
-    mediaTemp = somaTemp / temp.length;// Operação para calcular a média entre a soma das temperaturas dividindo pelo tamanho da array;
-
-        for(let i = 0;i < temp.length; i++){// Laço FOR para percorrer a array;
-            if ((diaEscolhido - 1) == i){// Comparação entre o dia escolhido - 1 (devido a array começar em 0) e o número do índice da array...)
-                if (temp[i] > mediaTemp){// Se a temperatura do dia escolhido for maior que a média de temperatura;
-                    mensagem = "A temperatura do dia "+ diaEscolhido +" estava acima da média";// Mostre essa mensagem senão...;
-                } else {
-                    mensagem = "A temperatura do dia "+ diaEscolhido +" estava abaixo da média";// Mostre essa.
-                }
+    mediaTemp = somaTemp / temp.length;
+    return mediaTemp;
+}
+//---------------------------------------------------------------- Função para realizar análise e mostrar resultado -----------------------------------------------------------\\
+botaoResultado.onclick = function () {
+    let mediaT = somaDasTemp(mediaTemp);
+    let dia = Number(diaInserido.value);
+    let mensagem = "";
+    for (let i = 0; i < temp.length; i++) {
+        if ((dia - 1) == i) {
+            if (temp[i] > mediaT) {
+                mensagem = "A temperatura do dia " + dia + " estava acima da média";
+            }
+            else {
+                mensagem = "A temperatura do dia " + dia + " estava abaixo da média";
             }
         }
-    saida.value = "Média das temperaturas: "+ mediaTemp.toFixed(1) +"ºC.\n"+ mensagem +"."// Mostra a saída dentro do textarea de resultado;
-
-
-}*/ //******* FUNÇÃO EM CONSTRUÇÃO *******//
+    }
+    atualizarDisplay.value = "Média das temperaturas: " + mediaT + "ºC.\n" + mensagem + ".";
+};
 //----------------------------------------------------------------- Função de controle caixas de digitação e labels -----------------------------------------------------------\\
 function bloquearCaixas() {
     labelTemp.innerText = "Digite a temperatura do 30º dia";
-    caixaDigitacao.disabled = true;
-    caixaDia.disabled = false;
+    tempInserida.disabled = true;
+    diaInserido.disabled = false;
     botaoAdicionar.disabled = true;
     botaoResultado.disabled = false;
 }
@@ -65,13 +72,13 @@ function modificarLabel() {
 }
 //------------------------------------------------------------------------- Limpar caixas quando adiciona valor ---------------------------------------------------------------\\
 function limparCaixas() {
-    caixaDigitacao.value = "";
+    tempInserida.value = "";
 }
 //------------------------------------------------------------------------------- Consistência de telas -----------------------------------------------------------------------\\
 function consistirTela() {
-    if (caixaDigitacao.value == "" || caixaDigitacao.value == " ") {
+    if (tempInserida.value == "" || tempInserida.value == " ") {
         alert("Preenchimento obrigatório: Campo Temperatura!");
-        caixaDigitacao.focus();
+        tempInserida.focus();
         return false;
     }
     return true;

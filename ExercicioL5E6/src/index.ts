@@ -8,66 +8,60 @@ var pessoasAteCinco: number = 0;
 var pessoasMaisDezoito: number = 0;
 var btnAddIdade = document.getElementById("idBtn") as HTMLButtonElement;
 var idadeDigitada = document.getElementById("idIdade") as HTMLInputElement;
-var saida = document.getElementById("idSaida") as HTMLTextAreaElement;
+const atualizarDisplay = document.getElementById("idSaida") as HTMLTextAreaElement;
+
+//------------------------------------------------------------- Função adicionar idade e atualizar display --------------------------------------------------------------------\\
 
 btnAddIdade.onclick = function(){
     somaIdades = somaIdades + Number(idadeDigitada.value);
     contIdade++;
     chamarFuncoes();
-    console.log(saida.value)
 }
 
-function calcularMedia(mediaIdade: number, somaIdades: number, contIdade: number):void{
+//---------------------------------------------------------------------- Função calcular média --------------------------------------------------------------------------------\\
+
+function calcularMedia():number{
     mediaIdade = somaIdades/contIdade;
-    console.log(mediaIdade);
+
+    return mediaIdade;
 }
 
-function contarIdadesM5ouM18(idadeDigitada: number, pessoasAteCinco:number, pessoasMaisDezoito:number, maiorIdade: number):void{
+//-------------------------------------------------------------------- Função contagem das idades -----------------------------------------------------------------------------\\
 
-    if (idadeDigitada < 5){
+function contarIdadesM5ouM18():void{
+
+    let idade: number = Number(idadeDigitada.value);
+
+    if (Number(idade) < 5){
         pessoasAteCinco++;   
 
-        }else if(idadeDigitada > 18){
+        }else if(Number(idade) > 18){
             pessoasMaisDezoito++;
 
-            }else if(idadeDigitada > maiorIdade){
-                maiorIdade = idadeDigitada;
+            }else if(Number(idade) > maiorIdade){
+                maiorIdade = idade;
             }
 
 }
 
-function atualizarDisplay(saida: string, mediaIdade: number, pessoasMaisDezoito: number, pessoasAteCinco: number, maiorIdade: number):void{
+//-------------------------------------------------------------------- Função criação da mensagem -----------------------------------------------------------------------------\\
 
-    saida.value = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;
+function criarMensagem():void{
+
+    let mensagem: string = "";
+
+    mensagem = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;
+
+    atualizarDisplay.value = mensagem;
 
 }
+
+//------------------------------------------------------------------ Função de unificação de funções --------------------------------------------------------------------------\\
 
 function chamarFuncoes(){
-    calcularMedia(mediaIdade, somaIdades, contIdade);
-    contarIdadesM5ouM18(Number(idadeDigitada), pessoasAteCinco, pessoasMaisDezoito, maiorIdade)
-    atualizarDisplay(saida, mediaIdade, pessoasMaisDezoito, pessoasAteCinco, maiorIdade);
+    calcularMedia();
+    contarIdadesM5ouM18();
+    criarMensagem();
 }
 
-
-
-/*
-function contarIdades(){
-
-let idadeDigitada =  Number(document.querySelector("#idIdade").value);
-let saida = document.querySelector("#idSaida");
-
-//somaIdades = somaIdades + idadeDigitada;
-//contIdade++;
-//mediaIdade = (somaIdades/contIdade).toFixed(2)
-
-    if (idadeDigitada < 5){
-        pessoasAteCinco++;                        
-    }
-    if (idadeDigitada > 18){
-        pessoasMaisDezoito++;
-    }
-    if (idadeDigitada > maiorIdade){
-        maiorIdade = idadeDigitada;
-    }
-saida.value = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;                   
-}*/
+//--------------------------------------------------------------------------- Fim do código -----------------------------------------------------------------------------------\\

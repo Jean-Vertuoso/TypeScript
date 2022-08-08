@@ -1,111 +1,88 @@
 //-------------------------------------------------------------------- Declaração de variáveis --------------------------------------------------------------------------------\\
 
+var botaoAposta = document.getElementById("idBtn") as HTMLButtonElement;
+const atualizarDisplay = document.getElementById("idSaida") as HTMLInputElement;
 var numeroApostado = document.getElementById("idNumEscolhido") as HTMLInputElement;
-const numeroSorteado =  parseInt((Number(Math.random() * 11)));
+var acabouJogo: boolean = false; 
+var numeroSorteado: number = Math.trunc(Number(Math.random()) * 11);
+var tentativas: number = 0;
 
-function iniciar():void{
+//---------------------------------------------------------------- Chamada de função de inicialização -------------------------------------------------------------------------\\
 
-}
+iniciarJogo();
+console.log(numeroSorteado);
 
-function acertarNumeroSorteado():void{
+//---------------------------------------------------------------------- Função de inicialização ------------------------------------------------------------------------------\\
 
-    var tentativas: number = 2;
-    let tentativa:number = 2;
+function iniciarJogo():number{
 
-    if (numeroApostado == numeroSorteado) {
-        saida.value = "Parabéns vc acertou!";
-        document.querySelector("#idNumero").disabled = true;
-        
-        } else if (numeroApostado > numeroSorteado) {
-            saida.value = "O número apostado é maior que sorteado"
-            tentativa--;
-
-            } else {
-                saida.value = "O número apostado é menor que sorteado"
-                tentativa--;}     
+    if (numeroSorteado == 0) {
+        numeroSorteado = 1;
     }
-    if ((tentativa == 0) && (numeroApostado != numeroSorteado)){
-        saida.value = "Jogo encerrado, você perdeu, mais sorte da próxima vez!"
-        document.querySelector("#idNumero").disabled = true;
+    return numeroSorteado;
+
+}
+
+botaoAposta.onclick = function():void{
+
+    let isCampoPreenchido = consistirTela();
+
+   if ((Number(numeroApostado) === numeroSorteado) && isCampoPreenchido) {    
+        atualizarDisplay.value = "Parabéns vc acertou!";
+        acabouJogo = true;
         
-        }else{
-            saida.value = "Parabéns vc acertou!";
-            document.querySelector("#idNumero").disabled = true;
-        }
+        } else if ((Number(numeroApostado) > numeroSorteado) && isCampoPreenchido) {
+            atualizarDisplay.value = "O número apostado é maior que sorteado";
+            tentativas++;
 
-
-}
-
-
-/*
-var somaIdades: number = 0;
-var contIdade: number = 0;
-var mediaIdade: number = 0;
-var maiorIdade: number = -1;
-var pessoasAteCinco: number = 0;
-var pessoasMaisDezoito: number = 0;
-var btnAddIdade = document.getElementById("idBtn") as HTMLButtonElement;
-var idadeDigitada = document.getElementById("idIdade") as HTMLInputElement;
-var saida = document.getElementById("idSaida") as HTMLTextAreaElement;
-
-btnAddIdade.onclick = function(){
-    somaIdades = somaIdades + Number(idadeDigitada.value);
-    contIdade++;
-    chamarFuncoes();
-    console.log(saida.value)
-}
-
-function calcularMedia(mediaIdade: number, somaIdades: number, contIdade: number):void{
-    mediaIdade = somaIdades/contIdade;
-    console.log(mediaIdade);
-}
-
-function contarIdadesM5ouM18(idadeDigitada: number, pessoasAteCinco:number, pessoasMaisDezoito:number, maiorIdade: number):void{
-
-    if (idadeDigitada < 5){
-        pessoasAteCinco++;   
-
-        }else if(idadeDigitada > 18){
-            pessoasMaisDezoito++;
-
-            }else if(idadeDigitada > maiorIdade){
-                maiorIdade = idadeDigitada;
+            } else if ((Number(numeroApostado) < numeroSorteado) && isCampoPreenchido){
+                atualizarDisplay.value = "O número apostado é menor que sorteado";
+                tentativas++;
+            } 
+            
+    if ((tentativas >= 3 && Number(numeroApostado) != numeroSorteado) && isCampoPreenchido){
+        atualizarDisplay.value = "Jogo encerrado, você perdeu, mais sorte da próxima vez!";
+        acabouJogo = true;
+        
+            }else if ((tentativas == 3 && Number(numeroApostado) == numeroSorteado) && isCampoPreenchido){
+                atualizarDisplay.value = "Parabéns vc acertou!";
+                acabouJogo = true;
             }
+console.log("123");
+console.log(numeroApostado.value);
+console.log(numeroSorteado);
 
 }
 
-function atualizarDisplay(saida: string, mediaIdade: number, pessoasMaisDezoito: number, pessoasAteCinco: number, maiorIdade: number):void{
+//---------------------------------------------------------------- Função controle de labels e caixas -------------------------------------------------------------------------\\
 
-    saida.value = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;
+function finalizarJogo():void{
+
+    let caixaNumero = document.querySelector("#idNumEscolhido") as HTMLInputElement;
+
+    if(acabouJogo == true){
+
+        caixaNumero.disabled = true;
+        botaoAposta.value = "Iniciar";
+
+    }
 
 }
 
-function chamarFuncoes(){
-    calcularMedia(mediaIdade, somaIdades, contIdade);
-    contarIdadesM5ouM18(Number(idadeDigitada), pessoasAteCinco, pessoasMaisDezoito, maiorIdade)
-    atualizarDisplay(saida, mediaIdade, pessoasMaisDezoito, pessoasAteCinco, maiorIdade);
+//---------------------------------------------------------------- Função de consistência de dado inserido --------------------------------------------------------------------\\
+
+function consistirTela():boolean{
+
+    if (numeroApostado.value == "" || numeroApostado.value == " ") {
+
+        alert("Preenchimento obrigatório: Campo numero apostado!");
+        numeroApostado.focus();
+
+        return false;
+    }
+
+    return true;
+
 }
 
-
-
-/*
-function contarIdades(){
-
-let idadeDigitada =  Number(document.querySelector("#idIdade").value);
-let saida = document.querySelector("#idSaida");
-
-//somaIdades = somaIdades + idadeDigitada;
-//contIdade++;
-//mediaIdade = (somaIdades/contIdade).toFixed(2)
-
-    if (idadeDigitada < 5){
-        pessoasAteCinco++;                        
-    }
-    if (idadeDigitada > 18){
-        pessoasMaisDezoito++;
-    }
-    if (idadeDigitada > maiorIdade){
-        maiorIdade = idadeDigitada;
-    }
-saida.value = "Média de idades: "+ mediaIdade + "\nQuantidade pessoas maiores de 18: "+ pessoasMaisDezoito +"\nQuantidade pessoas menores de 5: "+ pessoasAteCinco; +"Maior idade: "+ maiorIdade;                   
-}*/
+//---------------------------------------------------------------------------- Fim do código ----------------------------------------------------------------------------------\\
